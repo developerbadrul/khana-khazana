@@ -1,18 +1,20 @@
+import { registerUser } from "@/actions";
+import Link from "next/link";
 
 const RegisterPage = () => {
     return (
         <section class="h-screen grid place-items-center">
             <div class="max-w-[450px] w-full mx-auto p-6 border border-gray-700/20 rounded-md">
                 <h4 class="font-bold text-2xl">Sign Up</h4>
-                <form class="login-form">
+                <form class="login-form" action={registerUser}>
                     <div>
                         <label for="fname">First Name</label>
-                        <input type="text" name="fname" id="fname" />
+                        <input type="text" name="firstName" id="fname" />
                     </div>
 
                     <div>
                         <label for="lname">Last Name</label>
-                        <input type="text" name="lname" id="lname" />
+                        <input type="text" name="lastName" id="lname" />
                     </div>
                     <div>
                         <label for="email">Email Address</label>
@@ -29,9 +31,9 @@ const RegisterPage = () => {
 
                 <p class="text-center text-xs text-gray-600">Or</p>
 
-                <a href="./login.html" class="underline text-sm mx-auto block text-gray-600 mt-4 text-center">
+                <Link href="/login" class="underline text-sm mx-auto block text-gray-600 mt-4 text-center">
                     Login
-                </a>
+                </Link>
 
             </div>
         </section>

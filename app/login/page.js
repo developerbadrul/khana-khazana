@@ -1,3 +1,4 @@
+import Link from "next/link";
 
 const LoginPage = () => {
     return (
@@ -20,9 +21,9 @@ const LoginPage = () => {
 
                 <p className="text-center text-xs text-gray-600">Or</p>
 
-                <a href="./register.html" className="underline text-sm mx-auto block text-gray-600 mt-4 text-center">
+                <Link href="/register" className="underline text-sm mx-auto block text-gray-600 mt-4 text-center">
                     Create New Account
-                </a>
+                </Link>
             </div>
         </section>
     );
