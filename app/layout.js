@@ -2,6 +2,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import connectMongo from "@/dbConnect/connectMongoose";
+import { dbConnect } from "@/dbConnect/dbConnect";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -12,6 +13,7 @@ export const metadata = {
 
 export default async function RootLayout({ children }) {
   // await connectMongo()
+  await dbConnect()
   return (
     <html lang="en">
       <body className={inter.className}>

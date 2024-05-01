@@ -5,7 +5,7 @@ import { getAllRecipes } from "@/dbConnect/queries";
 
 const RecipesContainer = async () => {
     const recipes = await getAllRecipes()
-    console.log(recipes);
+    
     return (
         <section className="container py-8">
             <div className="grid grid-cols-12 py-4">
