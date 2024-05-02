@@ -36,5 +36,13 @@ async function createUser(user) {
 }
 
 
+async function findUserByCredentials(credentials) {
+    const user = await userModel.findOne(credentials).lean();
+    if (user) {
+        return user;
+    }
+    return null;
+}
 
-export { createUser, getAllRecipes, selectedRecipe }
+
+export { createUser, getAllRecipes, selectedRecipe, findUserByCredentials }
