@@ -1,12 +1,13 @@
 import Image from "next/image";
 import Logo from "@/public/assets/images/logo.png"
 import Link from "next/link";
+import LoginInOut from "./LoginInOut";
 const Navbar = () => {
     return (
         <nav>
             <div className="container flex justify-between py-6">
                 <Link href="/">
-                    <Image src={Logo} alt="Logo"  width={120} height={40}/>
+                    <Image src={Logo} alt="Logo" width={120} height={40} />
                 </Link>
 
                 <ul className="flex gap-4 text-sm text-gray-500">
@@ -23,7 +24,7 @@ const Navbar = () => {
                     </li>
 
                     <li className="py-2 bg-[#eb4a36] px-6 rounded-md text-white content-center">
-                        <Link href="/login">Login</Link>
+                        <LoginInOut />
                     </li>
                 </ul>
             </div>

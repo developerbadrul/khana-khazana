@@ -1,28 +1,17 @@
+import Link from "next/link";
 
-const SideBar = () => {
+const SideBar = ({ recipes }) => {
+    // Extract unique categories
+    const uniqueCategories = [...new Set(recipes.map(c => c.category))];
     return (
         <div className="col-span-12 md:col-span-3">
             <h3 className="font-bold text-xl">Recipes</h3>
             <ul className="pl-2 my-6 space-y-4 text-gray-500 text-sm">
-                <li>
-                    <a href="#">Morning Bliss Café</a>
-                </li>
-
-                <li>
-                    <a href="#">Sunrise Bites Kitchen</a>
-                </li>
-
-                <li>
-                    <a href="#">Brunch Haven Delights</a>
-                </li>
-
-                <li>
-                    <a href="#">Rise & Dine Eatery</a>
-                </li>
-
-                <li>
-                    <a href="#">Breakfast Oasis Junction</a>
-                </li>
+                {uniqueCategories && uniqueCategories.map((c, idx) => (
+                    <li key={idx}>
+                        <Link href={`/categorized/${c}`}>{c}</Link>
+                    </li>
+                ))}
             </ul>
         </div>
     );

@@ -1,6 +1,7 @@
 "use client"
 
 import { performLogin } from "@/actions";
+import useAuth from "@/hooks/useAuth";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -8,7 +9,7 @@ import { useState } from "react";
 
 const LoginPage = () => {
     const [error, setError] = useState("")
-
+    const { setAuth } = useAuth();
     const router = useRouter();
 
     async function onSubmit(event) {
@@ -16,10 +17,11 @@ const LoginPage = () => {
 
         try {
             const formData = new FormData(event.currentTarget);
-            console.log("in client" ,formData);
+            // console.log("in client" ,formData);
             const found = await performLogin(formData)
 
             if (found) {
+                setAuth(found)
                 router.push('/');
             } else {
                 setError('Please provide a valid login credential');

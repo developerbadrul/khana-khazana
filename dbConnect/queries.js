@@ -1,8 +1,10 @@
 import { recipesModel } from "@/models/recipes-model"
 import { userModel } from "@/models/user-model"
+import connectMongo from "./connectMongoose";
 
 
 async function getAllRecipes() {
+    await connectMongo()
     try {
         const recipes = await recipesModel.find();
         return recipes;
@@ -14,6 +16,7 @@ async function getAllRecipes() {
 
 
 async function selectedRecipe(recipeId) {
+    await connectMongo()
     try {
         const recipe = await recipesModel.findById(recipeId);
         return recipe;
@@ -26,6 +29,7 @@ async function selectedRecipe(recipeId) {
 
 
 async function createUser(user) {
+    await connectMongo()
     try {
         const newUser = await userModel.create(user);
         return newUser;
@@ -37,6 +41,7 @@ async function createUser(user) {
 
 
 async function findUserByCredentials(credentials) {
+    await connectMongo()
     const user = await userModel.findOne(credentials).lean();
     if (user) {
         return user;
@@ -44,5 +49,16 @@ async function findUserByCredentials(credentials) {
     return null;
 }
 
+async function findCategoryByName(category) {
+    await connectMongo()
+    try {
+        const result = await recipesModel.find({ category: category });
+        console.log("in query", category);
+        return result;
+    } catch (error) {
+        throw error.message
+    }
+}
 
-export { createUser, getAllRecipes, selectedRecipe, findUserByCredentials }
+
+export { createUser, getAllRecipes, selectedRecipe, findUserByCredentials, findCategoryByName }

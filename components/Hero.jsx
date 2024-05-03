@@ -1,7 +1,7 @@
 const Hero = () => {
     return (
         <section className="container">
-            <div className="py-4 bg-cover bg-center rounded-lg p-4 md:p-12 min-h-[450px] grid place-items-center grid-cols-12" style={{ backgroundImage: `url('./assets/images/cover.png')` }}>
+            <div className="py-4 bg-cover bg-center rounded-lg p-4 md:p-12 min-h-[450px] grid place-items-center grid-cols-12" style={{ backgroundImage: `url('https://i.ibb.co/fFpnb5N/cover.png')` }}>
                 <div className="col-span-12 md:col-span-6">
                     <h1 className="font-bold text-3xl md:text-5xl text-white">
                         Choose from thousands of recipes

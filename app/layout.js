@@ -3,6 +3,7 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import connectMongo from "@/dbConnect/connectMongoose";
 import { dbConnect } from "@/dbConnect/dbConnect";
+import AuthProvider from "@/provider/AuthProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -13,12 +14,16 @@ export const metadata = {
 
 export default async function RootLayout({ children }) {
   // await connectMongo()
-  await dbConnect()
+  // await dbConnect()
+  //   await connection ()
+  // await some_query
   return (
     <html lang="en">
       <body className={inter.className}>
-        <Navbar />
-        {children}
+        <AuthProvider>
+          <Navbar />
+          {children}
+        </AuthProvider>
       </body>
     </html>
   );

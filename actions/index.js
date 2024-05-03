@@ -1,6 +1,6 @@
 "use server"
 
-import { createUser, findUserByCredentials } from "@/dbConnect/queries";
+import { createUser, findCategoryByName, findUserByCredentials } from "@/dbConnect/queries";
 import { redirect } from "next/navigation";
 
 export const registerUser = async formData => {
@@ -25,10 +25,17 @@ export async function performLogin(formData) {
         const credential = {};
         credential.email = formData.get("email")
         credential.password = formData.get("password")
-        console.log("in server action", credential);
+        // console.log("in server action", credential);
         const found = await findUserByCredentials(credential)
         return found
     } catch (error) {
         throw error;
     }
+}
+
+
+export async function filterCategory(category) {
+    const filtered = await findCategoryByName(category)
+    console.log("in action", category);
+    return filtered;
 }
