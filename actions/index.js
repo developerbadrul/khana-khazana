@@ -1,6 +1,7 @@
 "use server"
 
-import { createUser, findCategoryByName, findUserByCredentials } from "@/dbConnect/queries";
+import { createUser, findCategoryByName, findUserByCredentials, updateFavouriteRecipe } from "@/dbConnect/queries";
+import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
 export const registerUser = async formData => {
@@ -38,4 +39,16 @@ export async function filterCategory(category) {
     const filtered = await findCategoryByName(category)
     console.log("in action", category);
     return filtered;
+}
+
+
+export async function addFavouriteItem(recipeId, authId) {
+    console.log("in action", recipeId, authId);
+    try {
+        await updateFavouriteRecipe(recipeId, authId)
+    } catch (error) {
+        throw error;
+    }
+
+    revalidatePath(`/recipe/${recipeId}`);
 }

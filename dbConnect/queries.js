@@ -61,4 +61,30 @@ async function findCategoryByName(category) {
 }
 
 
-export { createUser, getAllRecipes, selectedRecipe, findUserByCredentials, findCategoryByName }
+async function updateFavouriteRecipe(recipeId, authId) {
+    try {
+        const user = await userModel.findById(authId);
+        console.log("user in queries", user);
+        if (user) {
+            if (!user.favourites) {
+                user.favourites = [];
+            }
+            const isFavourite = user.favourites.includes(recipeId);
+            console.log("fav in queries", isFavourite);
+            if (!isFavourite) {
+                user.favourites.push(recipeId); 
+                await user.save(); 
+                console.log("Recipe added to favorites successfully");
+            } else {
+                console.log("Recipe is already in favorites");
+            }
+        } else {
+            console.log("User not found");
+        }
+    } catch (error) {
+        console.error("Error updating favorite recipe:", error);
+    }
+}
+
+
+export { createUser, getAllRecipes, selectedRecipe, findUserByCredentials, findCategoryByName, updateFavouriteRecipe }
